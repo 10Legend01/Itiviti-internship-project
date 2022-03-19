@@ -7,10 +7,10 @@ with market data feed control sequence.
 
 SYNTAX
 
-$ md_replay <file> [<symbol>]
+$ md_replay \<file\> [\<symbol\>]
 
-<file> File with market data control commands
-<symbol>        Instrument identification
+\<file\> File with market data control commands
+\<symbol\>        Instrument identification
 
 If <symbol> is omitted, the application must print all data
 as dictated by the market data control sequence. Otherwise,
@@ -39,57 +39,57 @@ by one or more arguments separated by commas.
 
 LIST OF COMMANDS
 
-* ORDER ADD,<order id>,<symbol>,<side>,<quantity>,<price>
+* ORDER ADD,\<order id\>,\<symbol\>,\<side\>,\<quantity\>,\<price\>
 
   Insert a new order into order book for a given instrument.
 
-* ORDER MODIFY,<order id>,<quantity>,<price>
+* ORDER MODIFY,\<order id\>,\<quantity\>,\<price\>
 
   Modify price and quantity in an already existing order.
 
-* ORDER CANCEL,<order id>
+* ORDER CANCEL,\<order id\>
 
   Withdraw an existing order.
 
-* SUBSCRIBE BBO,<symbol>
+* SUBSCRIBE BBO,\<symbol\>
 
   Starting from this line on, keep printing BBO information for
   a given instrument, unless it is filtered out by a program
   option (see SYNTAX)
 
-* UNSUBSCRIBE BBO,<symbol>
+* UNSUBSCRIBE BBO,\<symbol\>
 
   Starting from this line on, stop printing BBO information for
   a given instrument, unless there are subscribers left or
   unless the symbol is filtered out by a command line option
   (see SYNTAX)
 
-* SUBSCRIBE VWAP,<symbol>,<quantity>
+* SUBSCRIBE VWAP,\<symbol\>,\<quantity\>
 
   Starting from this line on, keep printing VWAP information for
   a given instrument, unless it is filtered out by a program
   option (see SYNTAX)
 
-* UNSUBSCRIBE VWAP,<symbol>,<quantity>
+* UNSUBSCRIBE VWAP,\<symbol\>,\<quantity\>
 
   Starting from this line on, stop printing VWAP information for
   a given instrument, unless there are subscribers left or
   unless the symbol is filtered out by a command line option
   (see SYNTAX)
 
-* PRINT,<symbol>
+* PRINT,\<symbol\>
 
   Print order book price levels for a given symbol in a form of
 
   Bid                             Ask
 
-  <volume>@<price> | <volume>@<price>
+  \<volume\>@\<price\> | <volume>@<price>
 
   where <volume> is a cumulative volume for all orders on a
   given price level. Bids must be sorted descending from top
   down, asks should be ascending from top down.
 
-* PRINT_FULL,<symbol>
+* PRINT_FULL,\<symbol\>
 
   Print all orders active in the order book, separated by their
   price levels.
@@ -127,16 +127,19 @@ GLOSSARY
 
        Example of an order book:
 
-|#orders| volume |   bid   |   ask   | volume |#orders|
-|-----------------------------------------------------|
-|      1|      10|    72.82|    72.85|     100|      1|
-|      1|     100|    72.81|    72.86|     100|      1|
-|      1|     100|     72.8|    72.87|     100|      1|
-|      1|     100|    72.79|    72.88|     100|      1|
-|      1|     100|    72.78|    72.89|     100|      1|
-|      2|    5500|       70|         |        |       |
-|-----------------------------------------------------|
 
+```
+|#orders| volume |   bid   |   ask   | volume |#orders|  
+|-----------------------------------------------------|  
+|      1|      10|    72.82|    72.85|     100|      1|  
+|      1|     100|    72.81|    72.86|     100|      1|  
+|      1|     100|     72.8|    72.87|     100|      1|  
+|      1|     100|    72.79|    72.88|     100|      1|  
+|      1|     100|    72.78|    72.89|     100|      1|  
+|      2|    5500|       70|         |        |       |  
+|-----------------------------------------------------|  
+```
+  
                Note that there are might be multiple orders with the same
                price, in which case they shall all contribute to the same
                order book level (that is, their volumes shall be sum up).
@@ -159,7 +162,7 @@ GLOSSARY
  there are still enough volume to pick from the topmost level, but
  for the bid it is
 
- bid vwap(20) := (10*72.82 + 10*72.81) / (10 + 10) = 72.815
+ bid vwap(20) := (10\*72.82 + 10\*72.81) / (10 + 10) = 72.815
 
  If order book has no volume to cover requested quantity, the
  side that fails should yield value of NIL.
